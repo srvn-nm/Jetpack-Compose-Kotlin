@@ -1,1 +1,1 @@
-# NewAndroidStudio
+# Jetpack Compose practicing
