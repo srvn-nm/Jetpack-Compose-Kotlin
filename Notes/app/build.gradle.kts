@@ -11,6 +11,7 @@ android {
     defaultConfig {
         applicationId = "com.example.todolist"
         minSdk = 24
+        //noinspection OldTargetApi
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -67,4 +68,22 @@ dependencies {
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
+
+    //room
+    //noinspection UseTomlInstead
+    implementation("androidx.room:room-runtime:2.5.2")
+    //noinspection UseTomlInstead
+    annotationProcessor("androidx.room:room-compiler:2.5.2")
+    //noinspection UseTomlInstead
+    implementation ("androidx.room:room-ktx:2.5.2")
+
+
+
+
+
+
+    //navigation
+    val navVersion = "2.6.0"
+    //noinspection UseTomlInstead
+    implementation("androidx.navigation:navigation-compose:$navVersion")
 }
