@@ -56,7 +56,7 @@ fun TabsContent(pagerState: PagerState) {
         when (page) {
             0 -> TabScreen1(data = "Sarvin 1, Sarvin 2, Sarvin dande be dande! Sarvin boshqab parande! Sarvin chera nemikhande?")
             1 -> TabScreen2(data = "Meow ^-^")
-            2 -> TabScreen3(data = "Shibuuuuukh")
+            2 -> TabScreen3(data = "My little Pishiiiiii <3")
         }
 
     }

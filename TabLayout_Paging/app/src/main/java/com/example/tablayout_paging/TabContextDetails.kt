@@ -21,7 +21,7 @@ fun TabScreen1(data: String) {
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "$data\n\nin tab screen 1!",
+            text = "$data\n\nin tab screen Abtin!",
             style = MaterialTheme.typography.headlineLarge,
             color = Color.Blue,
             fontFamily = FontFamily.Monospace,
@@ -39,7 +39,7 @@ fun TabScreen2(data: String) {
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "$data\n\nin tab screen 2!",
+            text = "$data\n\nin tab screen Sarvin!",
             style = MaterialTheme.typography.headlineLarge,
             color = Color.Blue,
             fontFamily = FontFamily.Monospace,
@@ -57,7 +57,7 @@ fun TabScreen3(data: String) {
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "$data\n\nin tab screen 3!",
+            text = "$data\n\nin tab screen Nazanin!",
             style = MaterialTheme.typography.headlineLarge,
             color = Color.Blue,
             fontFamily = FontFamily.Monospace,
