@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.example.tablayout_paging"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.tablayout_paging"
@@ -48,6 +48,7 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    buildToolsVersion = "34.0.0"
 }
 
 dependencies {
@@ -67,4 +68,10 @@ dependencies {
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
+    // optional - Jetpack Compose integration
+    //noinspection GradleDependency,UseTomlInstead
+    implementation("androidx.paging:paging-compose:1.0.0-alpha16")
+    //noinspection UseTomlInstead
+    implementation ("com.google.accompanist:accompanist-pager-indicators:0.30.1")
+
 }
