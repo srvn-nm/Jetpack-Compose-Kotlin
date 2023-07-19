@@ -11,7 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.recyclerview.widget.RecyclerView
 import com.example.todolist.db.Note
 
 @Composable
@@ -29,7 +28,7 @@ fun NoteItem(note: Note, navController: NavController) {
         modifier = Modifier
             .padding(8.dp)
             .clickable {
-                navController.navigate(Screen.NewNote.route(note))
+//                navController.navigate(Screen.NewNote.route(note))
             }
     ) {
         Column(modifier = Modifier.padding(16.dp)) {

@@ -22,10 +22,8 @@ abstract class NoteDataBase :RoomDatabase(){
         private fun dbBuilder(context: Context) = Room.databaseBuilder(
             context.applicationContext,
             NoteDataBase::class.java,
-            "todolist"
-        )
-            .allowMainThreadQueries()
-            .fallbackToDestructiveMigration()
+            "noteDB"
+        ).fallbackToDestructiveMigration()
             .build()
 
         operator fun invoke(context : Context) = instance ?: synchronized(LOCK){

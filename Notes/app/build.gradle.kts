@@ -83,8 +83,8 @@ dependencies {
 
 
 
-    //navigation
-    val navVersion = "2.6.0"
-    //noinspection UseTomlInstead
-    implementation("androidx.navigation:navigation-compose:$navVersion")
-}
+        //navigation
+        val navVersion = "2.6.0"
+        //noinspection UseTomlInstead
+        implementation("androidx.navigation:navigation-compose:$navVersion")
+    }

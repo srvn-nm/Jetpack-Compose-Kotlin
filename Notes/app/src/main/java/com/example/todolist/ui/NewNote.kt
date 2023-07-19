@@ -138,6 +138,6 @@ fun NewNoteOptionsMenu(navController: NavController, note: Note?, context: Conte
             note?.let { noteDB.deleteNote(it) }
         }
 
-        navController.navigate("myNotesFragment")
+        navController.navigate("myNotes")
     }
 }
