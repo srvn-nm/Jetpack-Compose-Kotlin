@@ -2,7 +2,7 @@ package com.example.roomdb.data
 
 import kotlinx.coroutines.flow.Flow
 
-class ConverterRepository_Impl(private val dao : ConverterDAO) : ConverterRepository {
+class ConverterRepositoryImpl(private val dao : ConverterDAO) : ConverterRepository {
 
     override suspend fun insertResult(result: ConversionResult) {
         dao.insertResult(result)

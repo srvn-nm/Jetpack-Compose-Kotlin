@@ -8,7 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.example.roomdb.data.ConverterDatabase
-import com.example.roomdb.data.ConverterRepository_Impl
+import com.example.roomdb.data.ConverterRepositoryImpl
 import com.example.roomdb.ui.screens.BaseScreen
 import com.example.roomdb.viewModel.ConverterViewModelFactory
 
@@ -16,7 +16,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val dao = ConverterDatabase.getInstance(application).converterDAO
-        val repository = ConverterRepository_Impl(dao)
+        val repository = ConverterRepositoryImpl(dao)
         val factory = ConverterViewModelFactory(repository)
 
         setContent {
