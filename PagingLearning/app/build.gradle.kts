@@ -11,6 +11,7 @@ android {
     defaultConfig {
         applicationId = "com.example.paginglearning"
         minSdk = 24
+        //noinspection OldTargetApi
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -67,4 +68,25 @@ dependencies {
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
+
+    //retrofit
+    //noinspection UseTomlInstead
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    //noinspection UseTomlInstead
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    //okhttp
+    //noinspection UseTomlInstead
+    implementation("com.squareup.okhttp3:okhttp:4.9.0")
+    //noinspection UseTomlInstead
+    implementation("com.squareup.okhttp3:logging-interface:4.9.0")
+
+    //coil image
+    //noinspection UseTomlInstead
+    implementation("com.google.accompanist:accompanist-coil:0.12.0")
+
+
+    //pagination
+    //noinspection UseTomlInstead
+    implementation("androidx.paging:paging-compose:3.2.0-rc01")
 }
