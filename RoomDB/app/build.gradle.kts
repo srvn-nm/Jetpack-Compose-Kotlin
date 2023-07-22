@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
+    id ("kotlin-kapt")
 }
 
 android {
@@ -11,6 +12,7 @@ android {
     defaultConfig {
         applicationId = "com.example.roomdb"
         minSdk = 24
+        //noinspection OldTargetApi
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -74,4 +76,9 @@ dependencies {
     //room
     //noinspection UseTomlInstead
     implementation ("androidx.room:room-runtime:2.5.2")
+    //noinspection UseTomlInstead
+    implementation ("androidx.room:room-ktx:2.5.2")
+
+    //noinspection KaptUsageInsteadOfKsp,UseTomlInstead
+    kapt("androidx.room:room-compiler:2.5.2")
 }
