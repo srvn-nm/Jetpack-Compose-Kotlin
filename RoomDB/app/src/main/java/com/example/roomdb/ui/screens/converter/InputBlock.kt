@@ -35,7 +35,7 @@ fun InputBlock(
     context: Context = LocalContext.current,
     calculate : (String)-> Unit
 ){
-    Column(modifier = modifier.padding(0.dp,20.dp,0.dp,0.dp)) {
+    Column(modifier = modifier.padding(20.dp)) {
         Row(modifier = modifier.fillMaxWidth()) {
             TextField(
                 value = inputText.value,
@@ -50,7 +50,7 @@ fun InputBlock(
                     autoCorrect = true,
                     keyboardType = KeyboardType.Number
                 ),
-                textStyle = TextStyle(color = Color.DarkGray, fontSize = 30.sp)
+                textStyle = TextStyle(color = Color.DarkGray, fontSize = 24.sp)
             )
             Text(
                 text = conversion.convertFrom,
@@ -71,11 +71,12 @@ fun InputBlock(
                     Toast.makeText(context,"Please, enter your value",Toast.LENGTH_LONG).show()
                 }
             },
-            modifier = modifier.fillMaxWidth(1F)
+            modifier = modifier
+                .fillMaxWidth(1F)
         ) {
             Text(
                 text = "Convert",
-                fontSize = 36.sp,
+                fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Blue
             )

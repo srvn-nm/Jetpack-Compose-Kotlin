@@ -3,6 +3,7 @@ package com.example.roomdb.ui.screens.converter
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
@@ -23,6 +24,7 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
 import com.example.roomdb.data.Conversion
@@ -42,15 +44,17 @@ fun ConversionMenu(list: List<Conversion>,
     else
         Icons.Filled.KeyboardArrowDown
 
-    Column {
+    Column (
+        modifier = modifier.padding(20.dp)
+    ){
         OutlinedTextField(
             value = displayingText,
             onValueChange = { displayingText = it },
             textStyle = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold),
             modifier = modifier
                 .fillMaxWidth()
-                .onGloballyPositioned { cordinates ->
-                    textFieldSize = cordinates.size.toSize()
+                .onGloballyPositioned { coordinates ->
+                    textFieldSize = coordinates.size.toSize()
                 },
             label = { Text(text = "Conversion type") },
             trailingIcon = {
@@ -71,7 +75,7 @@ fun ConversionMenu(list: List<Conversion>,
                     text = {
                         Text(
                             text = conversion.description,
-                            fontSize = 24.sp,
+                            fontSize = 20.sp,
                             fontWeight = FontWeight.Bold
                         )
                     },

@@ -8,6 +8,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -20,9 +21,9 @@ fun ResultBlock(
 ) {
     Card(
         elevation = CardDefaults
-            .cardElevation(defaultElevation = 20.dp),
+            .cardElevation(defaultElevation = 30.dp),
         modifier = modifier
-            .padding(0.dp, 20.dp, 0.dp, 0.dp)
+            .padding(20.dp)
     ) {
         Column(
             modifier = modifier
@@ -31,14 +32,16 @@ fun ResultBlock(
 
             Text(
                 text = message1,
-                fontSize = 28.sp
+                fontSize = 22.sp,
+                fontFamily = FontFamily.Monospace
             )
 
             Text(
                 text = message2,
-                fontSize = 28.sp,
+                fontSize = 22.sp,
                 color = Color.Blue,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                fontFamily = FontFamily.Monospace
             )
         }
     }

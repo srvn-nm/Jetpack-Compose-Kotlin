@@ -22,7 +22,9 @@ fun HistoryScreen(
     onClearAllTask: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Column {
+    Column(
+        modifier = modifier.padding(20.dp)
+    ) {
         if ((list.value).isNotEmpty()) {
             Row(
                 modifier = modifier
