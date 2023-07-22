@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
+    id ("kotlin-kapt")
 }
 
 android {
@@ -32,11 +33,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
@@ -89,4 +90,15 @@ dependencies {
     //pagination
     //noinspection UseTomlInstead
     implementation("androidx.paging:paging-compose:3.2.0-rc01")
+    val pagingVersion = "3.1.1"
+    //noinspection UseTomlInstead
+    implementation ("androidx.paging:paging-runtime-ktx:$pagingVersion")
+
+    val hiltVersion = "2.44"
+    //noinspection GradleDependency,UseTomlInstead
+    implementation ("com.google.dagger:hilt-android:$hiltVersion")
+    //noinspection KaptUsageInsteadOfKsp,UseTomlInstead
+    kapt ("com.google.dagger:hilt-compiler:$hiltVersion")
+    //noinspection UseTomlInstead
+    implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
 }
