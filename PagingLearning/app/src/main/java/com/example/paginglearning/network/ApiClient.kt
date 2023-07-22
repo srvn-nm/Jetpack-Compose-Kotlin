@@ -14,7 +14,7 @@ object ApiClient {
         OkHttpClient.Builder().addInterceptor(getLoggingInterceptor()).build()
 
     private fun getClient(): Retrofit {
-        return Retrofit.Builder().baseUrl("").client(getOkHttpClient())
+        return Retrofit.Builder().baseUrl("https://reqres.in/api/").client(getOkHttpClient())
             .addConverterFactory(GsonConverterFactory.create()).build()
     }
 
