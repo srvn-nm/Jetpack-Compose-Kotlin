@@ -71,4 +71,7 @@ dependencies {
     //viewModel
     //noinspection UseTomlInstead
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+    //room
+    //noinspection UseTomlInstead
+    implementation ("androidx.room:room-runtime:2.5.2")
 }

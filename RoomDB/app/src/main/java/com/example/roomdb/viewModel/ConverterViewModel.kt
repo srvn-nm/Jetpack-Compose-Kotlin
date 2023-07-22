@@ -1,7 +1,7 @@
 package com.example.roomdb.viewModel
 
 import androidx.lifecycle.ViewModel
-import com.example.roomdb.Conversion
+import com.example.roomdb.data.Conversion
 
 class ConverterViewModel : ViewModel() {
     fun getConversions() = listOf(

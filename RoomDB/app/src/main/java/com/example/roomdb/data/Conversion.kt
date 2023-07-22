@@ -1,4 +1,4 @@
-package com.example.roomdb
+package com.example.roomdb.data
 
 data class Conversion(
     val id: Int,
