@@ -81,9 +81,9 @@ fun UserListDetail(user: Flow<PagingData<UserData>>) {
         }
         Spacer(modifier = Modifier.height(10.dp))
         LazyColumn {
-            items( = userListItem, itemContent =  { item ->
+            items(count = userListItem.itemCount){ item ->
                 item?.let { UserLists(it) }
-            })
+            }
         }
     }
 }

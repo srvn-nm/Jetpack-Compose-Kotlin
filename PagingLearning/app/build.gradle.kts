@@ -43,7 +43,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = "1.4.6"
     }
     packaging {
         resources {
@@ -90,7 +90,7 @@ dependencies {
     //pagination
     //noinspection UseTomlInstead
     implementation("androidx.paging:paging-compose:3.2.0-rc01")
-    val pagingVersion = "3.1.1"
+    val pagingVersion = "3.2.0-rc01"
     //noinspection UseTomlInstead
     implementation ("androidx.paging:paging-runtime-ktx:$pagingVersion")
 
@@ -101,4 +101,6 @@ dependencies {
     kapt ("com.google.dagger:hilt-compiler:$hiltVersion")
     //noinspection UseTomlInstead
     implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
+    //noinspection UseTomlInstead
+    implementation ("com.google.accompanist:accompanist-pager-indicators:0.30.1")
 }
