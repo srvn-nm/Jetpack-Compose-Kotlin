@@ -77,9 +77,9 @@ dependencies {
 
     //okhttp
     //noinspection UseTomlInstead
-    implementation("com.squareup.okhttp3:okhttp:4.9.0")
+    implementation("com.squareup.okhttp3:okhttp:4.9.1")
     //noinspection UseTomlInstead
-    implementation("com.squareup.okhttp3:logging-interface:4.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
 
     //coil image
     //noinspection UseTomlInstead
