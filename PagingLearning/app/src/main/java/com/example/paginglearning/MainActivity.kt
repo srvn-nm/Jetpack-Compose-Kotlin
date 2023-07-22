@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -36,7 +35,6 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.paginglearning.model.UserData
 import com.example.paginglearning.ui.theme.PagingLearningTheme
-import com.example.paginglearning.ui.theme.Purple40
 import com.example.paginglearning.viewModel.UserViewModel
 import com.google.accompanist.coil.rememberCoilPainter
 import kotlinx.coroutines.flow.Flow
@@ -71,34 +69,15 @@ fun UserList(viewModel: UserViewModel) {
 fun UserListDetail(user: Flow<PagingData<UserData>>) {
     val userListItem: LazyPagingItems<UserData> = user.collectAsLazyPagingItems()
 
-    Column(
-        modifier = Modifier.fillMaxSize()
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Purple40)
-                .padding(15.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            Text(
-                text = "Compose Pagination",
-                fontWeight = FontWeight.Bold,
-                fontSize = 20.sp,
-                color = Color.White
-            )
-        }
-        Spacer(modifier = Modifier.height(10.dp))
-        LazyColumn {
-            items(count = userListItem.itemCount) { index ->
-                if (userListItem[index] != null) {
-                    userListItem[index]?.let {
-                        println(it.first_name)
-                        UserCardView(
-                            user = it
-                        )
-                    }
+    Spacer(modifier = Modifier.height(10.dp))
+    LazyColumn {
+        items(count = userListItem.itemCount) { index ->
+            if (userListItem[index] != null) {
+                userListItem[index]?.let {
+                    println(it.first_name)
+                    UserCardView(
+                        user = it
+                    )
                 }
             }
         }
@@ -110,7 +89,8 @@ fun UserCardView(user: UserData) {
     Card(
         modifier = Modifier
             .padding(start = 10.dp, top = 5.dp, end = 10.dp, bottom = 5.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .background(Color.Green),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         shape = RoundedCornerShape(10.dp)
 
@@ -136,6 +116,7 @@ fun UserCardView(user: UserData) {
                         .clip(RoundedCornerShape(10.dp)),
                     contentScale = ContentScale.Crop
                 )
+                println(user.avatar)
             }
 
             Column(
@@ -147,14 +128,14 @@ fun UserCardView(user: UserData) {
                     text = "Name: " + user.first_name + " " + user.last_name,
                     fontWeight = FontWeight.Bold,
                     fontSize = 20.sp,
-                    color = Color.Black
+                    color = Color.LightGray
                 )
-
+                println(user.id)
                 Text(
                     text = "Email: " + user.email,
                     fontWeight = FontWeight.Normal,
                     fontSize = 14.sp,
-                    color = Color.Black,
+                    color = Color.LightGray,
                     modifier = Modifier.padding(20.dp)
                 )
             }

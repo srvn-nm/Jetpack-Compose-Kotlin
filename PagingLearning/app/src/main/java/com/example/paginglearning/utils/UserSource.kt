@@ -16,10 +16,12 @@ class UserSource : PagingSource<Int, UserData>() {
         return try {
             val nextPage = params.key ?: 1
             val userList = ApiClient.apiService.getUserList(nextPage)
+            println(userList.data)
+            println(nextPage)
             LoadResult.Page(
                 data = userList.data,
                 prevKey = if (nextPage == 1) null else nextPage - 1,
-                nextKey = if (userList.data.isEmpty()) null else userList.page + 1
+                nextKey = if (userList.data.isEmpty()) null else nextPage + 1
             )
         }catch (exception: IOException){
 return LoadResult.Error(exception)
