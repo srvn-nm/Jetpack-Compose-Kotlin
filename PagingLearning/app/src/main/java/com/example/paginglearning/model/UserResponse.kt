@@ -1,7 +1,8 @@
 package com.example.paginglearning.model
 
 data class UserResponse(
-    var data: List<UserData>
+    var data: List<UserData>,
+    var page: Int
 )
 
 data class UserData(
