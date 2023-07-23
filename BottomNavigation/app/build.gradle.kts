@@ -11,6 +11,7 @@ android {
     defaultConfig {
         applicationId = "com.example.bottomnavigation"
         minSdk = 24
+        //noinspection OldTargetApi
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -67,4 +68,8 @@ dependencies {
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
+
+    //navigation
+    //noinspection UseTomlInstead
+    implementation("androidx.navigation:navigation-compose:2.6.0")
 }
