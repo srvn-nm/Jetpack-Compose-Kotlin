@@ -69,19 +69,19 @@ fun BottomNavigationView() {
             Modifier.padding(it)
         ) {
             composable(BottomScreen.Home.route) {
-
+                BottomScreenDetail(text = BottomScreen.Home.title)
             }
             composable(BottomScreen.Favourite.route) {
-
+                BottomScreenDetail(text = BottomScreen.Favourite.title)
             }
             composable(BottomScreen.Settings.route) {
-
+                BottomScreenDetail(text = BottomScreen.Settings.title)
             }
             composable(BottomScreen.Search.route) {
-
+                BottomScreenDetail(text = BottomScreen.Search.title)
             }
             composable(BottomScreen.User.route) {
-
+                BottomScreenDetail(text = BottomScreen.User.title)
             }
         }
     }
