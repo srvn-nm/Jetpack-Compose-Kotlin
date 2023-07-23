@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
     id ("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -43,7 +44,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = "1.4.6"
     }
     packaging {
         resources {
@@ -81,4 +82,10 @@ dependencies {
 
     //noinspection KaptUsageInsteadOfKsp,UseTomlInstead
     kapt("androidx.room:room-compiler:2.5.2")
+
+    //hilt
+    //noinspection UseTomlInstead
+    implementation("com.google.dagger:hilt-android:2.45")
+    //noinspection UseTomlInstead
+    kapt("com.google.dagger:hilt-compiler:2.44")
 }
