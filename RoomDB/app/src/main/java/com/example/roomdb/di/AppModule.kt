@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.room.Room
 import com.example.roomdb.data.ConverterDatabase
 import com.example.roomdb.data.ConverterRepository
+import com.example.roomdb.data.ConverterRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,7 +31,9 @@ object AppModule {
 
     //for converterRepository interface
     //because  converter data base is already in the hilt graph, we don't have to inject it. hilt library will do it itself.
-    fun provideConverterRepository(db: ConverterDatabase){
-
+    @Provides
+    @Singleton
+    fun provideConverterRepository(db: ConverterDatabase): ConverterRepository {
+        return ConverterRepositoryImpl(db.converterDAO)
     }
 }
