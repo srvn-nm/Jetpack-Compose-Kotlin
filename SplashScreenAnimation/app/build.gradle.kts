@@ -68,4 +68,12 @@ dependencies {
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
+
+
+    //noinspection UseTomlInstead
+    implementation("androidx.compose.runtime:runtime:1.4.3")
+    //noinspection UseTomlInstead
+    implementation("androidx.compose.runtime:runtime-livedata:1.4.3")
+    //noinspection UseTomlInstead
+    implementation("androidx.compose.runtime:runtime-rxjava2:1.4.3")
 }
