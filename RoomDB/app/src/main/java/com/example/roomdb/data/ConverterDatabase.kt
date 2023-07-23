@@ -10,6 +10,7 @@ abstract class ConverterDatabase : RoomDatabase() {
 
     abstract val converterDAO : ConverterDAO
 
+    //without hilt
     companion object{
         @Volatile
         private var INSTANCE : ConverterDatabase? = null
