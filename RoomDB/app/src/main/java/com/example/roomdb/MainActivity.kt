@@ -11,10 +11,13 @@ import com.example.roomdb.data.ConverterDatabase
 import com.example.roomdb.data.ConverterRepositoryImpl
 import com.example.roomdb.ui.screens.BaseScreen
 import com.example.roomdb.viewModel.ConverterViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //without hilt
         val dao = ConverterDatabase.getInstance(application).converterDAO
         val repository = ConverterRepositoryImpl(dao)
         val factory = ConverterViewModelFactory(repository)
