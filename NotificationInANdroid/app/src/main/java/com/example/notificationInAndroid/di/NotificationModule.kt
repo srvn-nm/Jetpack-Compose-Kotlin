@@ -34,7 +34,8 @@ object NotificationModule {
             putExtra("MESSAGE", "Clicked!")
         }
 
-        val flag = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) PendingIntent.FLAG_IMMUTABLE else 0
+        val flag =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) PendingIntent.FLAG_IMMUTABLE else 0
 
         val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, flag)
 
@@ -69,5 +70,4 @@ object NotificationModule {
         }
         return notificationManager
     }
-
 }
