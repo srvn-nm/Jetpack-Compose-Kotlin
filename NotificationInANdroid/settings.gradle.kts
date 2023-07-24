@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "NotificationInANdroid"
+rootProject.name = "NotificationInAndroid"
 include(":app")
  

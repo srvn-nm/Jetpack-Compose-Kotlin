@@ -84,4 +84,13 @@ dependencies {
     //viewModel
     //noinspection UseTomlInstead
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+
+
+
+
+
+    //noinspection UseTomlInstead
+    implementation ("androidx.annotation:annotation:1.6.0")
+    //noinspection UseTomlInstead
+    implementation ("androidx.localbroadcastmanager:localbroadcastmanager:1.1.0")
 }
