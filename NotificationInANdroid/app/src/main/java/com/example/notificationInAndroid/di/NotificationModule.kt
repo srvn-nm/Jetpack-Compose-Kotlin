@@ -1,5 +1,6 @@
 package com.example.notificationInAndroid.di
 
+import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -22,6 +23,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NotificationModule {
 
+    @SuppressLint("ObsoleteSdkInt")
     @Singleton
     @Provides
     fun provideNotificationBuilder(
@@ -32,8 +34,9 @@ object NotificationModule {
             putExtra("MESSAGE", "Clicked!")
         }
 
-        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent,
-            PendingIntent.FLAG_IMMUTABLE)
+        val flag = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) PendingIntent.FLAG_IMMUTABLE else 0
+
+        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, flag)
 
         return NotificationCompat.Builder(context, "Main Channel ID")
             .setContentTitle("Notification")
