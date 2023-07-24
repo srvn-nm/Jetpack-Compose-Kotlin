@@ -2,12 +2,15 @@ package com.example.notificationInAndroid.di
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationCompat.VISIBILITY_PRIVATE
 import androidx.core.app.NotificationManagerCompat
 import com.example.notificationInAndroid.R
+import com.example.notificationInAndroid.receiver.MyReceiver
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,6 +27,14 @@ object NotificationModule {
     fun provideNotificationBuilder(
         @ApplicationContext context: Context
     ): NotificationCompat.Builder {
+
+        val intent = Intent(context, MyReceiver::class.java).apply {
+            putExtra("MESSAGE", "Clicked!")
+        }
+
+        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent,
+            PendingIntent.FLAG_IMMUTABLE)
+
         return NotificationCompat.Builder(context, "Main Channel ID")
             .setContentTitle("Notification")
             .setContentText("Sarvin did this!")
@@ -36,6 +47,7 @@ object NotificationModule {
                     .setContentText("Unlock to see the message.")
                     .build()
             )
+            .addAction(R.drawable.ic_baseline_notifications_24, "ACTION", pendingIntent)
     }
 
     @Singleton
