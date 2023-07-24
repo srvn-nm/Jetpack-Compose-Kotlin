@@ -8,16 +8,19 @@ import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.ViewModel
+import com.example.notificationInAndroid.MainActivity
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val notificationBuilder: NotificationCompat.Builder,
     private val notificationManager: NotificationManagerCompat,
-    @SuppressLint("StaticFieldLeak") @ApplicationContext private val  context: Context
 ) : ViewModel() {
+
+    @SuppressLint("StaticFieldLeak")
+    lateinit var context :Context
+
 
     fun showSimpleNotification() {
         if (ActivityCompat.checkSelfPermission(
@@ -25,13 +28,10 @@ class MainViewModel @Inject constructor(
                 Manifest.permission.POST_NOTIFICATIONS
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+//            val permission = Manifest.permission.ACCESS_NOTIFICATION_POLICY
+//            if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+//                ActivityCompat.requestPermissions(MainActivity(), arrayOf(permission), 1234)
+//            }
             return
         }
         notificationManager.notify(1, notificationBuilder.build())
@@ -43,13 +43,10 @@ class MainViewModel @Inject constructor(
                 Manifest.permission.POST_NOTIFICATIONS
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+//            val permission = Manifest.permission.ACCESS_NOTIFICATION_POLICY
+//            if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+//                ActivityCompat.requestPermissions(MainActivity(), arrayOf(permission), 1234)
+//            }
             return
         }
         notificationManager.notify(1, notificationBuilder
