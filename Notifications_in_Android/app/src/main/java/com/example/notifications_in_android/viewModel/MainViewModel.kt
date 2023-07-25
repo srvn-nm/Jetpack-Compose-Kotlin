@@ -59,9 +59,11 @@ class MainViewModel @Inject constructor(
             //for ending download
             notificationManager.notify(
                 3,
+                //contains sound and higher priority
                 notificationBuilder
                     .setContentTitle("Completed!")
                     .setContentText("")
+                    //the notification is not clickable anymore
                     .setContentIntent(null)
                     //delete action buttons
                     .clearActions()
