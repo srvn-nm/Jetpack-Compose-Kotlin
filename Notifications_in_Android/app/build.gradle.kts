@@ -79,16 +79,15 @@ dependencies {
     //noinspection UseTomlInstead
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
-
     //viewModel
     //noinspection UseTomlInstead
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
-
-
 
     //noinspection UseTomlInstead
     implementation ("androidx.annotation:annotation:1.6.0")
     //noinspection UseTomlInstead
     implementation ("androidx.localbroadcastmanager:localbroadcastmanager:1.1.0")
 
+    //noinspection UseTomlInstead
+    implementation("androidx.fragment:fragment-ktx:1.6.0")
 }
