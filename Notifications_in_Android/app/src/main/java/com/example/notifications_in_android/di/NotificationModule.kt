@@ -22,6 +22,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module
@@ -31,6 +32,7 @@ object NotificationModule {
     @SuppressLint("ObsoleteSdkInt")
     @Singleton
     @Provides
+    @MainNotificationCompatBuilder
     fun provideNotificationBuilder(
         @ApplicationContext context: Context
     ): NotificationCompat.Builder {
@@ -77,6 +79,18 @@ object NotificationModule {
 
     @Singleton
     @Provides
+    @SecondNotificationCompatBuilder
+    fun provideSecondNotificationBuilder(
+        @ApplicationContext context: Context
+    ): NotificationCompat.Builder {
+        return NotificationCompat.Builder(context, "Second Channel ID")
+            .setSmallIcon(R.drawable.ic_baseline_notifications_24)
+            .setPriority(NotificationCompat.PRIORITY_LOW)
+            .setOngoing(true)
+    }
+
+    @Singleton
+    @Provides
     fun provideNotificationManager(
         @ApplicationContext context: Context
     ): NotificationManagerCompat {
@@ -98,3 +112,13 @@ object NotificationModule {
         return notificationManager
     }
 }
+
+
+//saying to hilt that which one is which one
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class MainNotificationCompatBuilder
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class SecondNotificationCompatBuilder
