@@ -52,7 +52,7 @@ class MainViewModel @Inject constructor(
                     3,
                     notificationBuilder2
                         .setContentTitle("Downloading")
-                        .setContentText("${progress/max*100}%")
+                        .setContentText("${progress}/${max}")
                         .setProgress(max, progress, false).build()
                 )
             }

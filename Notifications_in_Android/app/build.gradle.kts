@@ -93,4 +93,10 @@ dependencies {
     //noinspection UseTomlInstead
     implementation("androidx.localbroadcastmanager:localbroadcastmanager:1.1.0")
 
+    //icons
+    //noinspection UseTomlInstead
+    implementation ("androidx.compose.material:material-icons-core:1.4.3")
+    //noinspection UseTomlInstead
+    implementation ("androidx.compose.material:material-icons-extended:1.4.3")
+
 }
