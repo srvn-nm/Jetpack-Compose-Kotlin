@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.notifications_in_android.di.MainNotificationCompatBuilder
 import com.example.notifications_in_android.di.SecondNotificationCompatBuilder
+import com.example.notifications_in_android.di.ThirdNotificationCompatBuilder
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -18,6 +19,8 @@ class MainViewModel @Inject constructor(
     private val notificationBuilder: NotificationCompat.Builder,
     @SecondNotificationCompatBuilder
     private val notificationBuilder2: NotificationCompat.Builder,
+    @ThirdNotificationCompatBuilder
+    private val notificationBuilder3: NotificationCompat.Builder,
     private val notificationManager: NotificationManagerCompat
 ) : ViewModel() {
 
@@ -25,6 +28,7 @@ class MainViewModel @Inject constructor(
     @SuppressLint("MissingPermission")
     fun showSimpleNotification() {
         notificationManager.notify(1, notificationBuilder.build())
+        notificationManager.notify(2, notificationBuilder3.build())
     }
 
     @SuppressLint("MissingPermission")
@@ -34,10 +38,14 @@ class MainViewModel @Inject constructor(
                 .setContentTitle("NEW TITLE")
                 .build()
         )
+        notificationManager.notify(2, notificationBuilder3
+            .setContentTitle("NEW TITLE")
+            .build())
     }
 
     fun cancelSimpleNotification() {
         notificationManager.cancel(1)
+        notificationManager.cancel(2)
     }
 
     @SuppressLint("MissingPermission")

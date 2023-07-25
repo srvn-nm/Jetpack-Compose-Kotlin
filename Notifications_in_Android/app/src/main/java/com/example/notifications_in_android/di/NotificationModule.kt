@@ -38,7 +38,7 @@ object NotificationModule {
     @Singleton
     @Provides
     @MainNotificationCompatBuilder
-    suspend fun provideNotificationBuilder(
+    fun provideNotificationBuilder(
         @ApplicationContext context: Context
     ): NotificationCompat.Builder {
 
@@ -67,24 +67,6 @@ object NotificationModule {
 //        for going to an activity
 //        val clickPendingIntent = PendingIntent.getActivity(context, 1, clickIntent, flag)
 
-
-        //direct reply code
-        val remoteInput = RemoteInput.Builder(RESULT_KEY)
-            .setLabel("Type here...")
-            .build()
-        val replyIntent = Intent(context, MyReceiver::class.java)
-        val replyPendingIntent = PendingIntent.getBroadcast(context, 2, replyIntent, flag)
-        val replyAction = NotificationCompat.Action.Builder(
-            0,
-            "Reply",
-            replyPendingIntent
-        ).addRemoteInput(remoteInput).build()
-
-        val person = Person.Builder().setName("Sarvin").setIcon(IconCompat.createWithResource(context, R.drawable.baseline_person_3_24)).build()
-        val notificationStyle = NotificationCompat.MessagingStyle(person)
-            .addMessage("Hi there!", System.currentTimeMillis(), person)
-
-
         return NotificationCompat.Builder(context, "Main Channel ID")
             .setContentTitle("Notification")
             .setContentText("Sarvin did this!")
@@ -99,10 +81,49 @@ object NotificationModule {
             )
             .addAction(R.drawable.ic_baseline_notifications_24, "ACTION", pendingIntent)
             .setContentIntent(clickPendingIntent)
+    }
+
+    @Singleton
+    @Provides
+    @ThirdNotificationCompatBuilder
+    fun provideThirdNotificationBuilder(
+        @ApplicationContext context: Context
+    ): NotificationCompat.Builder {
+        val flag =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                PendingIntent.FLAG_MUTABLE
+            } else
+                0
+
+        //direct reply code
+        val remoteInput = RemoteInput.Builder(RESULT_KEY)
+            .setLabel("Type here...")
+            .build()
+        val replyIntent = Intent(context, MyReceiver::class.java)
+        val replyPendingIntent = PendingIntent.getBroadcast(
+            context,
+            1,
+            replyIntent,
+            flag
+        )
+        val replyAction = NotificationCompat.Action.Builder(
+            0,
+            "Reply",
+            replyPendingIntent
+        ).addRemoteInput(remoteInput).build()
+
+        val person = Person.Builder().setName("Johny").build()
+        val notificationStyle = NotificationCompat.MessagingStyle(person)
+            .addMessage("Hi there!", System.currentTimeMillis(), person)
+        return NotificationCompat.Builder(context, "Third Channel ID")
+            .setSmallIcon(R.drawable.ic_baseline_notifications_24)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setOnlyAlertOnce(true)
             //for reply action part
             .setStyle(notificationStyle)
             .addAction(replyAction)
     }
+
 
     @Singleton
     @Provides
@@ -134,12 +155,22 @@ object NotificationModule {
                 "Second Channel",
                 NotificationManager.IMPORTANCE_LOW
             )
+            val replyChannel = NotificationChannel(
+                "Third Channel ID",
+                "Third Channel",
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
             notificationManager.createNotificationChannel(channel)
+            notificationManager.createNotificationChannel(replyChannel)
             notificationManager.createNotificationChannel(progressChannel)
         }
         return notificationManager
     }
 }
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class ThirdNotificationCompatBuilder
 
 
 //saying to hilt that which one is which one
