@@ -77,17 +77,20 @@ dependencies {
     //noinspection UseTomlInstead
     kapt("com.google.dagger:hilt-android-compiler:2.47")
     //noinspection UseTomlInstead
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0-alpha01")
+    //noinspection UseTomlInstead
+    implementation("androidx.savedstate:savedstate-ktx:1.2.1")
+    //this line fixed the apps keeps crashing
+    //noinspection UseTomlInstead
+    implementation ("androidx.navigation:navigation-compose:2.6.0")
 
     //viewModel
     //noinspection UseTomlInstead
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
 
     //noinspection UseTomlInstead
-    implementation ("androidx.annotation:annotation:1.6.0")
+    implementation("androidx.annotation:annotation:1.6.0")
     //noinspection UseTomlInstead
-    implementation ("androidx.localbroadcastmanager:localbroadcastmanager:1.1.0")
+    implementation("androidx.localbroadcastmanager:localbroadcastmanager:1.1.0")
 
-    //noinspection UseTomlInstead
-    implementation("androidx.fragment:fragment-ktx:1.6.0")
 }

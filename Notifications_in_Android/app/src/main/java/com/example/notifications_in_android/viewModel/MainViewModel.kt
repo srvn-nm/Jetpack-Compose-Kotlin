@@ -52,16 +52,18 @@ class MainViewModel @Inject constructor(
                     3,
                     notificationBuilder2
                         .setContentTitle("Downloading")
-                        .setContentText("${progress}/${max}")
+                        .setContentText("${progress/max*100}%")
                         .setProgress(max, progress, false).build()
                 )
             }
+            //for ending download
             notificationManager.notify(
                 3,
                 notificationBuilder
                     .setContentTitle("Completed!")
                     .setContentText("")
                     .setContentIntent(null)
+                    //delete action buttons
                     .clearActions()
                     .setProgress(0, 0, false).build()
             )
