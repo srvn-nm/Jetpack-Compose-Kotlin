@@ -4,10 +4,14 @@ import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.app.RemoteInput
 import android.app.TaskStackBuilder
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Send
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationCompat.VISIBILITY_PRIVATE
 import androidx.core.app.NotificationManagerCompat
@@ -25,6 +29,8 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Qualifier
 import javax.inject.Singleton
 
+const val RESULT_KEY = "RESULT_KEY"
+
 @Module
 @InstallIn(SingletonComponent::class)
 object NotificationModule {
@@ -33,15 +39,16 @@ object NotificationModule {
     @Singleton
     @Provides
     @MainNotificationCompatBuilder
-    fun provideNotificationBuilder(
+    suspend fun provideNotificationBuilder(
         @ApplicationContext context: Context
     ): NotificationCompat.Builder {
+
+        val flag =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) PendingIntent.FLAG_IMMUTABLE else 0
 
         val intent = Intent(context, MyReceiver::class.java).apply {
             putExtra("MESSAGE", "Meow!")
         }
-
-        val flag = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) PendingIntent.FLAG_IMMUTABLE else 0
 
         val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, flag)
 
@@ -61,6 +68,15 @@ object NotificationModule {
 //        for going to an activity
 //        val clickPendingIntent = PendingIntent.getActivity(context, 1, clickIntent, flag)
 
+
+        //direct reply code
+        val remoteInput = RemoteInput.Builder(RESULT_KEY)
+            .setLabel("Type here...")
+            .build()
+        val replyIntent = Intent(context, MyReceiver::class.java)
+        val replyPendingIntent = PendingIntent.getBroadcast(context, 2, replyIntent, flag)
+
+
         return NotificationCompat.Builder(context, "Main Channel ID")
             .setContentTitle("Notification")
             .setContentText("Sarvin did this!")
@@ -75,6 +91,7 @@ object NotificationModule {
             )
             .addAction(R.drawable.ic_baseline_notifications_24, "ACTION", pendingIntent)
             .setContentIntent(clickPendingIntent)
+            .addAction((Icons.Default.Send).hashCode(), "Reply", replyPendingIntent)
     }
 
     @Singleton
