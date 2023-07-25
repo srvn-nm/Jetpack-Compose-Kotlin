@@ -87,7 +87,13 @@ object NotificationModule {
                 "Main Channel",
                 NotificationManager.IMPORTANCE_DEFAULT
             )
+            val progressChannel = NotificationChannel(
+                "Second Channel ID",
+                "Second Channel",
+                NotificationManager.IMPORTANCE_LOW
+            )
             notificationManager.createNotificationChannel(channel)
+            notificationManager.createNotificationChannel(progressChannel)
         }
         return notificationManager
     }
