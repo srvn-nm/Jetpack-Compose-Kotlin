@@ -37,6 +37,10 @@ fun MainScreen(
         Button(onClick = mainViewModel::cancelSimpleNotification) {
             Text(text = "Cancel Notification")
         }
+        Spacer(modifier = Modifier.height(12.dp))
+        Button(onClick = mainViewModel::showProgress) {
+            Text(text = "Download Progress bar")
+        }
         Spacer(modifier = Modifier.height(20.dp))
         Button(onClick = {
             navController.navigate(
