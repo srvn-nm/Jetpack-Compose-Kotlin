@@ -13,13 +13,13 @@ import androidx.core.app.NotificationCompat.VISIBILITY_PRIVATE
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.app.Person
 import androidx.core.app.RemoteInput
-import androidx.core.graphics.drawable.IconCompat
 import androidx.core.net.toUri
 import com.example.notifications_in_android.MainActivity
 import com.example.notifications_in_android.R
 import com.example.notifications_in_android.navigation.MY_ARG
 import com.example.notifications_in_android.navigation.MY_URI
 import com.example.notifications_in_android.receiver.MyReceiver
+import com.example.notifications_in_android.receiver.MyReceiver2
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,7 +45,7 @@ object NotificationModule {
         val flag =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) PendingIntent.FLAG_IMMUTABLE else 0
 
-        val intent = Intent(context, MyReceiver::class.java).apply {
+        val intent = Intent(context, MyReceiver2::class.java).apply {
             putExtra("MESSAGE", "Meow!")
         }
 
