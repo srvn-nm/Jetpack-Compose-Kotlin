@@ -37,13 +37,13 @@ class MyReceiver : BroadcastReceiver() {
             val message2 = NotificationCompat.MessagingStyle.Message(
                 input, System.currentTimeMillis(), person
             )
-//            val notificationStyle = NotificationCompat.MessagingStyle(person).addMessage(message2)
+            val notificationStyle = NotificationCompat.MessagingStyle(person).addMessage(message2)
             notificationManager.notify(
                 1,
                 notificationBuilder
-//                    .setStyle(notificationStyle)
+                    .setStyle(notificationStyle)
                     .setContentTitle("Sent!")
-                    .setStyle(null)
+//                    .setStyle(null)
                     .build()
             )
         }
