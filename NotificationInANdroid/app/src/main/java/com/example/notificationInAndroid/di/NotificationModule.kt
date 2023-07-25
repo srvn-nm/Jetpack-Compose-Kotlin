@@ -10,6 +10,7 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationCompat.VISIBILITY_PRIVATE
 import androidx.core.app.NotificationManagerCompat
+import com.example.notificationInAndroid.MainActivity
 import com.example.notificationInAndroid.R
 import com.example.notificationInAndroid.receiver.MyReceiver
 import dagger.Module
@@ -31,13 +32,15 @@ object NotificationModule {
     ): NotificationCompat.Builder {
 
         val intent = Intent(context, MyReceiver::class.java).apply {
-            putExtra("MESSAGE", "Clicked!")
+            putExtra("MESSAGE", "Meow!")
         }
 
-        val flag =
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) PendingIntent.FLAG_IMMUTABLE else 0
+        val flag = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) PendingIntent.FLAG_IMMUTABLE else 0
 
         val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, flag)
+
+        val clickIntent = Intent(context, MainActivity::class.java)
+        val clickPendingIntent = PendingIntent.getActivity(context, 1, clickIntent, flag)
 
         return NotificationCompat.Builder(context, "Main Channel ID")
             .setContentTitle("Notification")
@@ -52,6 +55,7 @@ object NotificationModule {
                     .build()
             )
             .addAction(R.drawable.ic_baseline_notifications_24, "ACTION", pendingIntent)
+            .setContentIntent(clickPendingIntent)
     }
 
     @Singleton
