@@ -4,17 +4,17 @@ import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
-import android.app.RemoteInput
 import android.app.TaskStackBuilder
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Send
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationCompat.VISIBILITY_PRIVATE
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.app.Person
+import androidx.core.app.RemoteInput
+import androidx.core.graphics.drawable.IconCompat
 import androidx.core.net.toUri
 import com.example.notifications_in_android.MainActivity
 import com.example.notifications_in_android.R
@@ -75,6 +75,15 @@ object NotificationModule {
             .build()
         val replyIntent = Intent(context, MyReceiver::class.java)
         val replyPendingIntent = PendingIntent.getBroadcast(context, 2, replyIntent, flag)
+        val replyAction = NotificationCompat.Action.Builder(
+            0,
+            "Reply",
+            replyPendingIntent
+        ).addRemoteInput(remoteInput).build()
+
+        val person = Person.Builder().setName("Sarvin").setIcon(IconCompat.createWithResource(context, R.drawable.baseline_person_3_24)).build()
+        val notificationStyle = NotificationCompat.MessagingStyle(person)
+            .addMessage("Hi there!", System.currentTimeMillis(), person)
 
 
         return NotificationCompat.Builder(context, "Main Channel ID")
@@ -91,7 +100,9 @@ object NotificationModule {
             )
             .addAction(R.drawable.ic_baseline_notifications_24, "ACTION", pendingIntent)
             .setContentIntent(clickPendingIntent)
-            .addAction((Icons.Default.Send).hashCode(), "Reply", replyPendingIntent)
+            //for reply action part
+            .setStyle(notificationStyle)
+            .addAction(replyAction)
     }
 
     @Singleton
