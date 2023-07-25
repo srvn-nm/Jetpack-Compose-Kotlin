@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.notifications_in_android.navigation.Screen
+import com.example.notifications_in_android.viewModel.MainViewModel
 
 @Composable
 fun MainScreen(

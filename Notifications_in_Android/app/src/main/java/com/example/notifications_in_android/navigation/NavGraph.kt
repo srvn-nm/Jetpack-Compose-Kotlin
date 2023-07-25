@@ -7,6 +7,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navDeepLink
+import com.example.notifications_in_android.ui.screen.DetailsScreen
+import com.example.notifications_in_android.ui.screen.MainScreen
 
 const val MY_URI = "https://stevdza-san.com"
 const val MY_ARG = "message"

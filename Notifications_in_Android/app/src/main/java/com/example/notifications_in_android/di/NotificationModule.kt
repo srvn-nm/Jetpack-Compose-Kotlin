@@ -14,6 +14,9 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.net.toUri
 import com.example.notifications_in_android.MainActivity
 import com.example.notifications_in_android.R
+import com.example.notifications_in_android.navigation.MY_ARG
+import com.example.notifications_in_android.navigation.MY_URI
+import com.example.notifications_in_android.receiver.MyReceiver
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
