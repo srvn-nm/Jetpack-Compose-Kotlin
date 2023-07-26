@@ -96,8 +96,7 @@ fun MainScreen(stopwatchService: StopwatchService) {
             Button(
                 modifier = Modifier
                     .weight(1f)
-                    .fillMaxHeight(0.8f)
-                    .background(if (currentState == StopwatchState.Started) Red else Blue),
+                    .fillMaxHeight(0.8f),
                 onClick = {
                     ServiceHelper.triggerForegroundService(
                         context = context,
@@ -105,6 +104,7 @@ fun MainScreen(stopwatchService: StopwatchService) {
                         else ACTION_SERVICE_START
                     )
                 }, colors = ButtonDefaults.buttonColors(
+                    containerColor = if (currentState == StopwatchState.Started) Red else Blue,
                     contentColor = Color.White
                 )
             ) {
@@ -125,7 +125,7 @@ fun MainScreen(stopwatchService: StopwatchService) {
                     )
                 },
                 enabled = seconds != "00" && currentState != StopwatchState.Started,
-                colors = ButtonDefaults.buttonColors(disabledContainerColor = LightGray)
+                colors = ButtonDefaults.buttonColors(disabledContentColor = LightGray)
             ) {
                 Text(text = "Cancel")
             }
