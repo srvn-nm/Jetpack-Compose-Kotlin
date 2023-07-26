@@ -6,7 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import androidx.compose.animation.ExperimentalAnimationApi
-import com.example.stopWatch.MainActivity
+import com.example.stopWatch.ui.activity.MainActivity
 import com.example.stopWatch.utils.Constants.CANCEL_REQUEST_CODE
 import com.example.stopWatch.utils.Constants.CLICK_REQUEST_CODE
 import com.example.stopWatch.utils.Constants.RESUME_REQUEST_CODE
