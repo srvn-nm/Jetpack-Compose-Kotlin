@@ -28,7 +28,6 @@ class MainViewModel @Inject constructor(
     @SuppressLint("MissingPermission")
     fun showSimpleNotification() {
         notificationManager.notify(1, notificationBuilder.build())
-        notificationManager.notify(2, notificationBuilder3.build())
     }
 
     @SuppressLint("MissingPermission")
@@ -38,16 +37,10 @@ class MainViewModel @Inject constructor(
                 .setContentTitle("NEW TITLE")
                 .build()
         )
-        notificationManager.notify(
-            2, notificationBuilder3
-                .setContentTitle("NEW TITLE")
-                .build()
-        )
     }
 
     fun cancelSimpleNotification() {
         notificationManager.cancel(1)
-        notificationManager.cancel(2)
     }
 
     @SuppressLint("MissingPermission")
@@ -81,10 +74,23 @@ class MainViewModel @Inject constructor(
             )
         }
     }
+
     @SuppressLint("MissingPermission")
     fun replyButton(){
-        notificationManager.notify(1, notificationBuilder.build())
+        notificationManager.notify(2, notificationBuilder3.build())
     }
 
+    @SuppressLint("MissingPermission")
+    fun replyButtonUpdate(){
+        notificationManager.notify(
+            2, notificationBuilder3
+                .setContentTitle("NEW TITLE")
+                .build()
+        )
+    }
 
+    @SuppressLint("MissingPermission")
+    fun replyButtonCancel(){
+        notificationManager.cancel(2)
+    }
 }
