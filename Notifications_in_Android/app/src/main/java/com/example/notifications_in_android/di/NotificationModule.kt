@@ -97,9 +97,10 @@ object NotificationModule {
                 0
 
         //direct reply code
-        val remoteInput = RemoteInput.Builder(RESULT_KEY)
-            .setLabel("Type here...")
-            .build()
+        val remoteInput = RemoteInput.Builder(RESULT_KEY).run {
+            setLabel("Type here...")
+            build()
+        }
         val replyIntent = Intent(context, MyReceiver::class.java)
         val replyPendingIntent = PendingIntent.getBroadcast(
             context,
@@ -108,7 +109,7 @@ object NotificationModule {
             flag
         )
         val replyAction = NotificationCompat.Action.Builder(
-            0,
+            R.drawable.ic_reply_icon,
             "Reply",
             replyPendingIntent
         ).addRemoteInput(remoteInput).build()
@@ -172,7 +173,6 @@ object NotificationModule {
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
 annotation class ThirdNotificationCompatBuilder
-
 
 //saying to hilt that which one is which one
 @Qualifier

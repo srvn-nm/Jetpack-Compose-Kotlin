@@ -32,22 +32,21 @@ class MyReceiver : BroadcastReceiver() {
             val remoteInput = intent?.let { RemoteInput.getResultsFromIntent(it) }
             if (remoteInput != null) {
                 val input = remoteInput.getCharSequence(RESULT_KEY).toString()
-                val person = Person.Builder().setName("Me").setIcon(context?.let {
-                    IconCompat.createWithResource(
-                        it, R.drawable.baseline_person_3_24
-                    )
-                }).build()
-                val message2 = NotificationCompat.MessagingStyle.Message(
+                val person = Person.Builder().setName("Me").build()
+                val message = NotificationCompat.MessagingStyle.Message(
                     input, System.currentTimeMillis(), person
                 )
-                val notificationStyle =
-                    NotificationCompat.MessagingStyle(person).addMessage(message2)
+                val notificationStyle = NotificationCompat.MessagingStyle(person).addMessage(message)
+
+                //the reply message
+                val replyMessage = RemoteInput.getResultsFromIntent(intent)?.getCharSequence(RESULT_KEY).toString()
+
                 notificationManager.notify(
-                    1,
+                    2,
                     notificationBuilder
-//                        .setStyle(notificationStyle)
-                        .setContentTitle("Sent!")
-                        .setStyle(null)
+                    .setStyle(notificationStyle)
+                        .setContentTitle("$replyMessage Sent!")
+//                        .setStyle(null)
                         .build()
                 )
             }

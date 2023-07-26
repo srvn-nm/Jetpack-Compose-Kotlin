@@ -51,6 +51,7 @@ fun MainScreen(
         }) {
             Text(text = "Details Screen")
         }
+        Spacer(modifier = Modifier.height(20.dp))
         Button(onClick = mainViewModel::replyButton) {
             Text(text = "Direct Reply Notification")
         }
