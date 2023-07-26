@@ -38,9 +38,11 @@ class MainViewModel @Inject constructor(
                 .setContentTitle("NEW TITLE")
                 .build()
         )
-        notificationManager.notify(2, notificationBuilder3
-            .setContentTitle("NEW TITLE")
-            .build())
+        notificationManager.notify(
+            2, notificationBuilder3
+                .setContentTitle("NEW TITLE")
+                .build()
+        )
     }
 
     fun cancelSimpleNotification() {
@@ -79,4 +81,10 @@ class MainViewModel @Inject constructor(
             )
         }
     }
+    @SuppressLint("MissingPermission")
+    fun replyButton(){
+        notificationManager.notify(1, notificationBuilder.build())
+    }
+
+
 }

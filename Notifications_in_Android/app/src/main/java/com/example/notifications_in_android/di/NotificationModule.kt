@@ -13,6 +13,7 @@ import androidx.core.app.NotificationCompat.VISIBILITY_PRIVATE
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.app.Person
 import androidx.core.app.RemoteInput
+import androidx.core.graphics.drawable.IconCompat
 import androidx.core.net.toUri
 import com.example.notifications_in_android.MainActivity
 import com.example.notifications_in_android.R
@@ -102,7 +103,7 @@ object NotificationModule {
         val replyIntent = Intent(context, MyReceiver::class.java)
         val replyPendingIntent = PendingIntent.getBroadcast(
             context,
-            1,
+            2,
             replyIntent,
             flag
         )
@@ -112,7 +113,7 @@ object NotificationModule {
             replyPendingIntent
         ).addRemoteInput(remoteInput).build()
 
-        val person = Person.Builder().setName("Johny").build()
+        val person = Person.Builder().setName("Sarvin").setIcon(IconCompat.createWithResource(context, R.drawable.baseline_person_3_24)).build()
         val notificationStyle = NotificationCompat.MessagingStyle(person)
             .addMessage("Hi there!", System.currentTimeMillis(), person)
         return NotificationCompat.Builder(context, "Third Channel ID")

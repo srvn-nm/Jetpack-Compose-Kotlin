@@ -8,17 +8,22 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.app.Person
 import androidx.core.app.RemoteInput
+import androidx.core.graphics.drawable.IconCompat
+import com.example.notifications_in_android.R
 import com.example.notifications_in_android.di.RESULT_KEY
 import com.example.notifications_in_android.di.ThirdNotificationCompatBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MyReceiver @Inject constructor(
+class MyReceiver : BroadcastReceiver() {
+
     @ThirdNotificationCompatBuilder
-    private val notificationBuilder: NotificationCompat.Builder,
-    private val notificationManager: NotificationManagerCompat
-) : BroadcastReceiver() {
+    @Inject
+    lateinit var notificationBuilder: NotificationCompat.Builder
+
+    @Inject
+    lateinit var notificationManager: NotificationManagerCompat
 
     @SuppressLint("MissingPermission")
     override fun onReceive(context: Context?, intent: Intent?) {
@@ -27,7 +32,11 @@ class MyReceiver @Inject constructor(
             val remoteInput = intent?.let { RemoteInput.getResultsFromIntent(it) }
             if (remoteInput != null) {
                 val input = remoteInput.getCharSequence(RESULT_KEY).toString()
-                val person = Person.Builder().setName("Me").build()
+                val person = Person.Builder().setName("Me").setIcon(context?.let {
+                    IconCompat.createWithResource(
+                        it, R.drawable.baseline_person_3_24
+                    )
+                }).build()
                 val message2 = NotificationCompat.MessagingStyle.Message(
                     input, System.currentTimeMillis(), person
                 )
@@ -36,9 +45,9 @@ class MyReceiver @Inject constructor(
                 notificationManager.notify(
                     1,
                     notificationBuilder
-                        .setStyle(notificationStyle)
+//                        .setStyle(notificationStyle)
                         .setContentTitle("Sent!")
-//                    .setStyle(null)
+                        .setStyle(null)
                         .build()
                 )
             }
