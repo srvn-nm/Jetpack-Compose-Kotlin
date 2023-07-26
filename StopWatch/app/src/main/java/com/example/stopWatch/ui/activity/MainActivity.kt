@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.stopWatch.Manifest
 import com.example.stopWatch.service.StopwatchService
+import com.example.stopWatch.ui.screens.MainScreen
 import com.example.stopWatch.ui.theme.StopWatchTheme
 import dagger.hilt.android.AndroidEntryPoint
 

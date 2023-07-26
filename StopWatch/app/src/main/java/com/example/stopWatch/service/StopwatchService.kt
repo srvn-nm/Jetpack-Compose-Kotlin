@@ -39,10 +39,10 @@ class StopwatchService : Service() {
     private var duration: Duration = Duration.ZERO
     private lateinit var timer: Timer
 
-    private var seconds = mutableStateOf("00")
-    private var minutes = mutableStateOf("00")
-    private var hours = mutableStateOf("00")
-    private var currentState = mutableStateOf(StopwatchState.Idle)
+    var seconds = mutableStateOf("00")
+    var minutes = mutableStateOf("00")
+    var hours = mutableStateOf("00")
+    var currentState = mutableStateOf(StopwatchState.Idle)
 
     override fun onBind(p0: Intent?) = binder
 
