@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.core.app.NotificationCompat
 import com.example.stopWatch.R
+import com.example.stopWatch.service.ServiceHelper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
