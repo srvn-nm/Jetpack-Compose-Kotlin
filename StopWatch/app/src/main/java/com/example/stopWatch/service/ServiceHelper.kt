@@ -1,5 +1,6 @@
 package com.example.stopWatch.service
 
+import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
@@ -10,6 +11,7 @@ import com.example.stopWatch.MainActivity
 @ExperimentalAnimationApi
 object ServiceHelper {
 
+    @SuppressLint("ObsoleteSdkInt")
     private val flag =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
             PendingIntent.FLAG_IMMUTABLE
