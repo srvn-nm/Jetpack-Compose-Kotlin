@@ -8,8 +8,6 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.app.Person
 import androidx.core.app.RemoteInput
-import androidx.core.graphics.drawable.IconCompat
-import com.example.notifications_in_android.R
 import com.example.notifications_in_android.di.RESULT_KEY
 import com.example.notifications_in_android.di.ThirdNotificationCompatBuilder
 import dagger.hilt.android.AndroidEntryPoint
