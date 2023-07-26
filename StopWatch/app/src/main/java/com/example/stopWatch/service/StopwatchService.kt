@@ -10,6 +10,8 @@ import android.os.Build
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.mutableStateOf
 import androidx.core.app.NotificationCompat
+import com.example.stopWatch.utils.formatTime
+import com.example.stopWatch.utils.pad
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Timer
 import javax.inject.Inject
