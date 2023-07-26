@@ -10,6 +10,13 @@ import android.os.Build
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.mutableStateOf
 import androidx.core.app.NotificationCompat
+import com.example.stopWatch.utils.Constants.ACTION_SERVICE_CANCEL
+import com.example.stopWatch.utils.Constants.ACTION_SERVICE_START
+import com.example.stopWatch.utils.Constants.ACTION_SERVICE_STOP
+import com.example.stopWatch.utils.Constants.NOTIFICATION_CHANNEL_ID
+import com.example.stopWatch.utils.Constants.NOTIFICATION_CHANNEL_NAME
+import com.example.stopWatch.utils.Constants.NOTIFICATION_ID
+import com.example.stopWatch.utils.Constants.STOPWATCH_STATE
 import com.example.stopWatch.utils.formatTime
 import com.example.stopWatch.utils.pad
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,14 +39,10 @@ class StopwatchService : Service() {
     private var duration: Duration = Duration.ZERO
     private lateinit var timer: Timer
 
-    var seconds = mutableStateOf("00")
-        private set
-    var minutes = mutableStateOf("00")
-        private set
-    var hours = mutableStateOf("00")
-        private set
-    var currentState = mutableStateOf(StopwatchState.Idle)
-        private set
+    private var seconds = mutableStateOf("00")
+    private var minutes = mutableStateOf("00")
+    private var hours = mutableStateOf("00")
+    private var currentState = mutableStateOf(StopwatchState.Idle)
 
     override fun onBind(p0: Intent?) = binder
 
