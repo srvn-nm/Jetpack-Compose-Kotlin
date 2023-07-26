@@ -13,6 +13,8 @@ import com.example.notifications_in_android.di.ThirdNotificationCompatBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+var replyMessage = ""
+
 @AndroidEntryPoint
 class MyReceiver : BroadcastReceiver() {
 
@@ -34,15 +36,17 @@ class MyReceiver : BroadcastReceiver() {
                 val message = NotificationCompat.MessagingStyle.Message(
                     input, System.currentTimeMillis(), person
                 )
-                val notificationStyle = NotificationCompat.MessagingStyle(person).addMessage(message)
+                val notificationStyle =
+                    NotificationCompat.MessagingStyle(person).addMessage(message)
 
                 //the reply message
-                val replyMessage = RemoteInput.getResultsFromIntent(intent)?.getCharSequence(RESULT_KEY).toString()
+                replyMessage += "\n" + RemoteInput.getResultsFromIntent(intent)
+                    ?.getCharSequence(RESULT_KEY).toString()
 
                 notificationManager.notify(
                     2,
                     notificationBuilder
-                    .setStyle(notificationStyle)
+                        .setStyle(notificationStyle)
                         .setContentTitle("$replyMessage Sent!")
 //                        .setStyle(null)
                         .build()
