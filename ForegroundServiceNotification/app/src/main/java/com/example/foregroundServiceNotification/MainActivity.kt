@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    MakeForegroundService()
                 }
             }
         }
@@ -30,17 +30,6 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+fun MakeForegroundService() {
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ForegroundServiceNotificationTheme {
-        Greeting("Android")
-    }
 }
