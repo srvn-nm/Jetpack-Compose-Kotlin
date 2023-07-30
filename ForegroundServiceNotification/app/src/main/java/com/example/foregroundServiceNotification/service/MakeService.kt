@@ -1,5 +1,6 @@
 package com.example.foregroundServiceNotification.service
 
+import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -30,11 +31,17 @@ class MakeService : Service() {
 
     override fun onBind(p0: Intent?): IBinder? = null
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val command = intent?.getStringExtra(INTENT_COMMAND)
         if (command == INTENT_COMMAND_EXIT) {
+            stopService()
             return START_NOT_STICKY
-        } else if (command == INTENT_COMMAND_REPLY) {
+        }
+
+        showNotification()
+
+        if (command == INTENT_COMMAND_REPLY) {
             Toast.makeText(this, "Clicked in notification", Toast.LENGTH_SHORT).show()
         }
         return START_STICKY
@@ -45,6 +52,7 @@ class MakeService : Service() {
         stopSelf()
     }
 
+    @SuppressLint("LaunchActivityFromNotification")
     @RequiresApi(Build.VERSION_CODES.O)
     private fun showNotification() {
         val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -96,6 +104,11 @@ class MakeService : Service() {
             setOngoing(true)
             setWhen(System.currentTimeMillis())
             setSmallIcon(R.drawable.baseline_android_24)
+            priority = Notification.PRIORITY_MAX
+            setContentIntent(replyPendingIntent)
+            addAction(0, "Reply", replyPendingIntent )
+            addAction(0, "Achieve", achievePendingIntent)
+            startForeground(CODE_FOREGROUND_SERVICE, build())
         }
     }
 }
