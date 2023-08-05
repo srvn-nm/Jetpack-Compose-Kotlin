@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
+    id ("kotlin-kapt")
 }
 
 android {
@@ -41,7 +42,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = "1.5.1"
     }
     packaging {
         resources {
@@ -60,6 +61,7 @@ dependencies {
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
+    implementation(libs.androidx.documentfile)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -67,4 +69,38 @@ dependencies {
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
+    //Dagger - Hilt
+    //noinspection UseTomlInstead
+    implementation ("com.google.dagger:hilt-android:2.47")
+    //noinspection UseTomlInstead
+    kapt ("com.google.dagger:hilt-android-compiler:2.47")
+    //noinspection UseTomlInstead
+    kapt ("androidx.hilt:hilt-compiler:1.0.0")
+    //noinspection UseTomlInstead
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0-alpha01")
+    //noinspection UseTomlInstead
+    implementation ("androidx.hilt:hilt-work:1.0.0")
+    //noinspection UseTomlInstead
+    implementation("androidx.localbroadcastmanager:localbroadcastmanager:1.1.0")
+    //noinspection UseTomlInstead
+    implementation("androidx.annotation:annotation:1.6.0")
+    //noinspection UseTomlInstead
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+    //noinspection UseTomlInstead
+    implementation("androidx.savedstate:savedstate-ktx:1.2.1")
+
+    //worker
+    val coreVersion = "1.6.0"
+    val workVersion = "2.7.1"
+    //noinspection GradleDependency,UseTomlInstead
+    implementation ("androidx.core:core-ktx:$coreVersion")
+    //noinspection GradleDependency,UseTomlInstead
+    implementation ("androidx.work:work-runtime-ktx:$workVersion")
+    //noinspection UseTomlInstead
+    implementation ("androidx.hilt:hilt-work:1.0.0")
+
+    //noinspection UseTomlInstead
+    implementation ("io.coil-kt:coil-compose:2.4.0")
+    //noinspection UseTomlInstead
+    implementation ("io.coil-kt:coil:2.4.0")
 }
