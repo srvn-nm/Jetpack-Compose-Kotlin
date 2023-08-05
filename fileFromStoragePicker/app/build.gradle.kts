@@ -42,7 +42,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.0"
     }
     packaging {
         resources {
@@ -103,4 +103,14 @@ dependencies {
     implementation ("io.coil-kt:coil-compose:2.4.0")
     //noinspection UseTomlInstead
     implementation ("io.coil-kt:coil:2.4.0")
+
+    //video player
+    //noinspection UseTomlInstead
+    implementation ("com.google.android.exoplayer:exoplayer:2.19.0")
+    //noinspection UseTomlInstead
+    implementation ("com.google.android.exoplayer:exoplayer-core:2.19.0")
+    //noinspection UseTomlInstead
+    implementation ("com.google.android.exoplayer:exoplayer-dash:2.19.0")
+    //noinspection UseTomlInstead
+    implementation ("com.google.android.exoplayer:exoplayer-ui:2.19.0")
 }
