@@ -22,24 +22,25 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
@@ -51,14 +52,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.documentfile.provider.DocumentFile
 import com.example.fileFromStoragePicker.ui.theme.FileFromStoragePickerTheme
-import com.google.android.exoplayer2.C
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
 import com.google.android.exoplayer2.ui.StyledPlayerView
 import kotlinx.coroutines.flow.MutableStateFlow
-import java.net.URLDecoder
-import java.nio.charset.StandardCharsets
 
 class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.P)
@@ -70,7 +67,7 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
-                    FileUploadScreen("video")
+                    FileUploadScreen("zip/rar")
                 }
             }
         }
@@ -183,6 +180,9 @@ fun FileUploadScreen(type: String) {
                     "video"->{
                         VideoPlayer(fileUri)
                     }
+                    "zip/rar"->{
+                        ZipOrRarFileCard(fileUri, context)
+                    }
                 }
             }
             if (type == "image") {
@@ -269,7 +269,8 @@ private fun pickZipOrRarFile(
 ) {
     val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
         addCategory(Intent.CATEGORY_OPENABLE)
-        type = "*/*" // Allows the user to pick any type of file
+        type = "*/*"
+        putExtra(Intent.EXTRA_MIME_TYPES, arrayOf("application/zip", "application/vnd.rar")) // Filter for zip and rar files
         addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
     }
     launcher.launch(intent)
@@ -279,4 +280,41 @@ private fun isValidFile(uri: Uri, context: Context): Boolean {
     val documentFile = DocumentFile.fromSingleUri(context, uri)
     val fileExtension = documentFile?.name?.substringAfterLast('.')
     return fileExtension == "zip" || fileExtension == "rar"
+}
+
+@SuppressLint("QueryPermissionsNeeded")
+@Composable
+fun ZipOrRarFileCard(uri: Uri, context: Context) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+            .clickable {
+                val intent = Intent(Intent.ACTION_VIEW).apply {
+                    data = uri
+                    flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+                }
+                if (intent.resolveActivity(context.packageManager) != null) {
+                    context.startActivity(intent)
+                }
+            },
+        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+    ) {
+        Row(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            val iconRes = R.drawable.baseline_folder_zip_24
+            Image(
+                painter = painterResource(id = iconRes),
+                contentDescription = "File Icon",
+                modifier = Modifier.size(48.dp)
+            )
+
+            Spacer(modifier = Modifier.width(16.dp))
+            Text(uri.toString())
+        }
+    }
 }
