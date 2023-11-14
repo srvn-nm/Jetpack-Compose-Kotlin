@@ -7,11 +7,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.example.tourism.model.AttractionCard
 import com.example.tourism.model.AttractionItems
 import com.example.tourism.ui.theme.TourismTheme
+import com.example.tourism.ui.utils.KhashAppBar
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,16 +25,20 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    val kharkAttractions = listOf(
-                        AttractionItems.ZarrinSanganCypress,
-                        AttractionItems.heidarAbadCastle,
-                        AttractionItems.irendganCastle,
-                        AttractionItems.threeSeeLake,
-                        AttractionItems.taftanMountains
-                    )
-                    LazyColumn {
-                        items(kharkAttractions) {
-                            AttractionCard(attraction = it)
+                    Scaffold(
+                        topBar = { KhashAppBar() }
+                    ) {
+                        LazyColumn(contentPadding = it) {
+                            val khashAttractions = listOf(
+                                AttractionItems.ZarrinSanganCypress,
+                                AttractionItems.heidarAbadCastle,
+                                AttractionItems.irendganCastle,
+                                AttractionItems.threeSeeLake,
+                                AttractionItems.taftanMountains
+                            )
+                            items(khashAttractions) {attraction->
+                                AttractionCard(attraction = attraction)
+                            }
                         }
                     }
                 }
