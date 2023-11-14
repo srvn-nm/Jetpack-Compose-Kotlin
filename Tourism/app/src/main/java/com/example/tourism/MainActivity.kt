@@ -4,12 +4,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import com.example.tourism.model.AttractionCard
+import com.example.tourism.model.AttractionItems
 import com.example.tourism.ui.theme.TourismTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,25 +23,20 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    val kharkAttractions = listOf(
+                        AttractionItems.ZarrinSanganCypress,
+                        AttractionItems.heidarAbadCastle,
+                        AttractionItems.irendganCastle,
+                        AttractionItems.threeSeeLake,
+                        AttractionItems.taftanMountains
+                    )
+                    LazyColumn {
+                        items(kharkAttractions) {
+                            AttractionCard(attraction = it)
+                        }
+                    }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    TourismTheme {
-        Greeting("Android")
     }
 }
