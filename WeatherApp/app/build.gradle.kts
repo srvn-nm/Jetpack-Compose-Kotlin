@@ -66,4 +66,25 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    //okhttp for json
+    //noinspection UseTomlInstead
+    implementation ("com.squareup.okhttp3:okhttp:5.0.0-alpha.11")
+    //noinspection UseTomlInstead
+    implementation ("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11")
+    //retrofit
+    //noinspection UseTomlInstead
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    //moshi
+    //noinspection UseTomlInstead
+    implementation ("com.squareup.retrofit2:converter-moshi:2.9.0")
+    //noinspection UseTomlInstead
+    implementation ("com.squareup.moshi:moshi:1.15.0")
+    //kotlin moshi json Adapter
+    //noinspection UseTomlInstead
+    implementation ("com.squareup.moshi:moshi-kotlin:1.15.0")
+
+    //navigation in compose
+    //noinspection UseTomlInstead
+    implementation ("androidx.navigation:navigation-compose:2.7.6")
 }
