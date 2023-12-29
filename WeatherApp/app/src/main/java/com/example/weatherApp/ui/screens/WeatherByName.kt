@@ -36,6 +36,8 @@ import androidx.navigation.NavHostController
 import com.example.weatherApp.R
 import com.example.weatherApp.jsonHandler.IranStates
 import com.example.weatherApp.viewModel.RequestViewModel
+import kotlinx.coroutines.Delay
+import kotlinx.coroutines.delay
 import kotlin.math.sqrt
 
 @Composable
@@ -83,11 +85,13 @@ fun WeatherByNameScreen(navController: NavHostController, city: IranStates.IranC
                     CardViewContent("Sunrise: ${cityWeather.value?.city?.sunrise}", R.drawable.ic_sunrise2, "Sunset: ${cityWeather.value?.city?.sunset}", R.drawable.ic_sunset2)
                     Spacer(modifier = Modifier.height(16.dp))
                     cityWeather.value?.list?.forEach {
+                        Text(text = it.dt_txt)
                         CardViewContent("Temp: ${it.main.temp}", R.drawable.ic_celcius, "Feels Like: ${it.main.feels_like}", R.drawable.ic_temperature)
                         Spacer(modifier = Modifier.height(16.dp))
                         CardViewContent("Temp Min: ${it.main.temp_min}", R.drawable.ic_temperature_down, "Temp Max: ${it.main.temp_max}", R.drawable.ic_temperature_up)
                         Spacer(modifier = Modifier.height(16.dp))
                         CardViewContent("Pressure: ${it.main.pressure}", R.drawable.ic_temperature,"Humidity: ${it.main.humidity}", R.drawable.ic_humidity)
+                        Spacer(modifier = Modifier.height(16.dp))
                     }
                 }
             }
@@ -123,14 +127,14 @@ fun CardViewContent(text1: String, imageRes1: Int, text2:String, imageRes2: Int)
             }
             Column(modifier = Modifier.weight(1f)) {
                 Image(
-                    painter = painterResource(id = imageRes1), // Replace with your drawable resource
-                    contentDescription = "Sunrise Icon",
+                    painter = painterResource(id = imageRes1),
+                    contentDescription = text1,
                     modifier = Modifier.size(40.dp),
                     contentScale = ContentScale.Crop
                 )
                 Image(
-                    painter = painterResource(id = imageRes2), // Replace with your drawable resource
-                    contentDescription = "Sunrise Icon",
+                    painter = painterResource(id = imageRes2),
+                    contentDescription = text2,
                     modifier = Modifier.size(40.dp),
                     contentScale = ContentScale.Crop
                 )
@@ -162,19 +166,24 @@ fun PollutionShow(x: Double, y: Double) {
         in 301..500 -> Color(76,0,38)
         else -> Color.Black
     }
-
-    Card {
+    Card(
+        modifier = Modifier.padding(5.dp)
+    ) {
         Row {
             Box(
                 modifier = Modifier
-                    .size(10.dp)
+                    .padding(2.5.dp)
+                    .size(40.dp)
                     .background(
                         color = color,
                         shape = CircleShape
                     )
 //                    .border(1.dp, Color.Black, CircleShape)
             )
-            Text(text = "Pollution AQI Rate: ${rank.toString()}")
+            Text(
+                text = "Pollution AQI Rate: ${rank.toString()}",
+                modifier = Modifier.padding(2.5.dp)
+                )
         }
     }
 }
@@ -182,5 +191,5 @@ fun PollutionShow(x: Double, y: Double) {
 fun calculateDistance(dot1: Pair<Double, Double>, dot2: Pair<Double, Double>): Double {
     val deltaX = dot2.first - dot1.first
     val deltaY = dot2.second - dot1.second
-    return sqrt(deltaX * deltaX + deltaY * deltaY)
+    return sqrt((deltaX * deltaX) + (deltaY * deltaY))
 }
