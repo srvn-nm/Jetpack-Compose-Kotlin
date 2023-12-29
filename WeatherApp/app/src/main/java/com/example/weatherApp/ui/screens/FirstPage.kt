@@ -24,11 +24,16 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.beust.klaxon.JsonReader
+import com.beust.klaxon.Klaxon
 import com.example.weatherApp.R
 import com.example.weatherApp.jsonHandler.Iran
+import com.example.weatherApp.jsonHandler.IranStates
 import com.example.weatherApp.jsonHandler.readJSONFromAssets
 import com.example.weatherApp.model.screen.WeatherScreens
+import com.example.weatherApp.network.response.iranCities
 import com.google.gson.Gson
+import java.io.StringReader
 
 @Composable
 fun FirstPage(navController: NavHostController) {
@@ -38,6 +43,10 @@ fun FirstPage(navController: NavHostController) {
             "iran_cities_with_coordinates.json"
         ), Iran::class.java
     )
+
+//    val iranData = Klaxon()
+//        .parse<Iran>(iranCities)
+
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -46,6 +55,13 @@ fun FirstPage(navController: NavHostController) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         item {
+            Image(
+                painter = painterResource(id = R.drawable.images),
+                contentDescription = null,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp)
+            )
             var nameShow by remember {
                 mutableStateOf(false)
             }
@@ -61,15 +77,10 @@ fun FirstPage(navController: NavHostController) {
                 Text(text = "Weather Condition and Air Pollution by Choosing")
             }
             if (nameShow) {
-                Image(
-                    painter = painterResource(id = R.drawable.images),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(200.dp)
-                )
                 Text("Please choose city name from below.")
-                DropdownStatesMenuBox(iranData.states, navController)
+                if (iranData != null) {
+                    DropdownStatesMenuBox(iranData.states, navController)
+                }
             }
             if (!nameShow) {
                 Button(
