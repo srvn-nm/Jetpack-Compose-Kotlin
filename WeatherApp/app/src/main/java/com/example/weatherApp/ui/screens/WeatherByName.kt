@@ -21,9 +21,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.weatherApp.R
+import com.example.weatherApp.jsonHandler.IranStates
 
 @Composable
-fun WeatherByNameScreen(navController: NavHostController, name: String) {
+fun WeatherByNameScreen(navController: NavHostController, city: IranStates.IranCity?) {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = Color.White
@@ -44,19 +45,21 @@ fun WeatherByNameScreen(navController: NavHostController, name: String) {
                     contentScale = ContentScale.Fit
                 )
 
-                Text(
-                    text = name,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 4.dp, bottom = 4.dp)
-                        .wrapContentWidth(Alignment.CenterHorizontally),
-                    style = TextStyle(
-                        fontFamily = FontFamily.Cursive,
-                        fontSize = 34.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.Black
+                if (city != null) {
+                    Text(
+                        text = city.name,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 4.dp, bottom = 4.dp)
+                            .wrapContentWidth(Alignment.CenterHorizontally),
+                        style = TextStyle(
+                            fontFamily = FontFamily.Cursive,
+                            fontSize = 34.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Black
+                        )
                     )
-                )
+                }
             }
         }
     }
