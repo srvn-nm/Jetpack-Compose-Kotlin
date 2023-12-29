@@ -91,4 +91,12 @@ dependencies {
     //material
     //noinspection UseTomlInstead
     implementation ("com.google.android.material:material:1.11.0")
+
+    //Gson
+    //noinspection UseTomlInstead
+    implementation("com.google.code.gson:gson:2.10.1")
+
+    //spinner
+    //noinspection UseTomlInstead
+    implementation("androidx.compose.runtime:runtime-livedata:1.5.4")
 }
