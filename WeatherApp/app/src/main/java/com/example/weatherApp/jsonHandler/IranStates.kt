@@ -6,7 +6,7 @@ data class IranStates(
 ) {
     data class IranCity(
         val name: String,
-        val latitude: Float,
-        val longitude: Float
+        val latitude: Double,
+        val longitude: Double
     )
 }
