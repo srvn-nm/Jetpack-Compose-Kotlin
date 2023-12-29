@@ -69,28 +69,28 @@ dependencies {
 
     //okhttp for json
     //noinspection UseTomlInstead
-    implementation ("com.squareup.okhttp3:okhttp:5.0.0-alpha.11")
+    implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.11")
     //noinspection UseTomlInstead
-    implementation ("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11")
+    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11")
     //retrofit
     //noinspection UseTomlInstead
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
     //moshi
     //noinspection UseTomlInstead
-    implementation ("com.squareup.retrofit2:converter-moshi:2.9.0")
+    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
     //noinspection UseTomlInstead
-    implementation ("com.squareup.moshi:moshi:1.15.0")
+    implementation("com.squareup.moshi:moshi:1.15.0")
     //kotlin moshi json Adapter
     //noinspection UseTomlInstead
-    implementation ("com.squareup.moshi:moshi-kotlin:1.15.0")
+    implementation("com.squareup.moshi:moshi-kotlin:1.15.0")
 
     //navigation in compose
     //noinspection UseTomlInstead
-    implementation ("androidx.navigation:navigation-compose:2.7.6")
+    implementation("androidx.navigation:navigation-compose:2.7.6")
 
     //material
     //noinspection UseTomlInstead
-    implementation ("com.google.android.material:material:1.11.0")
+    implementation("com.google.android.material:material:1.11.0")
 
     //Gson
     //noinspection UseTomlInstead
@@ -99,4 +99,12 @@ dependencies {
     //spinner
     //noinspection UseTomlInstead
     implementation("androidx.compose.runtime:runtime-livedata:1.5.4")
+
+    //json
+    //noinspection UseTomlInstead
+    implementation("com.beust:klaxon:5.5")
+
+    //noinspection UseTomlInstead
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
 }
