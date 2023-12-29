@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
                     },
                 ) { padding ->
                     Box(modifier = Modifier.padding(padding)) {
-                        NavGraph(navHostController = navController)
+                       NavGraph(navHostController = navController)
                     }
                 }
             }
