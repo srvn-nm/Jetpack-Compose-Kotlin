@@ -35,11 +35,11 @@ class RequestViewModel : ViewModel() {
         }.build()
 
 
-    fun cityWeatherApi(cityName: String) {
+    fun cityWeatherApi(lat:Double, lon:Double) {
         viewModelScope.launch {
             try {
                 val retrofit = Retrofit.Builder()
-                    .baseUrl("https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=501b25848afaeca041fb1ce35525d09b&units=metric")
+                    .baseUrl("api.openweathermap.org/data/2.5/forecast?lat={$lat}&lon={$lon}&appid={decd370edd977988058c38527827580d}")
                     .addConverterFactory(MoshiConverterFactory.create(moshi))
                     .client(okHttpClient)
                     .build()
