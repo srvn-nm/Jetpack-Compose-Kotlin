@@ -48,7 +48,7 @@ class LocationLiveData(private var context: Context) : LiveData<LocationDetails>
         }
     }
 
-    private fun startLocationUpdates() {
+    fun startLocationUpdates() {
         if (ActivityCompat.checkSelfPermission(
                 context,
                 Manifest.permission.ACCESS_FINE_LOCATION
