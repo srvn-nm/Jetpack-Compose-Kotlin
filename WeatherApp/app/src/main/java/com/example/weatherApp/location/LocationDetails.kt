@@ -1,5 +1,6 @@
 package com.example.weatherApp.location
 
-class LocationDetails {
-
-}
+data class LocationDetails(
+    val longitude: Double,
+    val latitude: Double
+)
