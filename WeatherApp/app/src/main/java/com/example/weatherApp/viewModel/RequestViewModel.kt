@@ -39,13 +39,13 @@ class RequestViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val retrofit = Retrofit.Builder()
-                    .baseUrl("api.openweathermap.org/data/2.5/forecast?lat={$lat}&lon={$lon}&appid={decd370edd977988058c38527827580d}")
+                    .baseUrl("https://api.openweathermap.org/data/2.5/")
                     .addConverterFactory(MoshiConverterFactory.create(moshi))
                     .client(okHttpClient)
                     .build()
                     .create(WeatherApiService::class.java)
 
-                _weatherInformation.value = retrofit.weatherPage()
+                _weatherInformation.value = retrofit.weatherPage(lat, lon, "decd370edd977988058c38527827580d")
 
             } catch (exception: Exception) {
                 exception.printStackTrace()
@@ -62,7 +62,7 @@ class RequestViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val retrofit = Retrofit.Builder()
-                    .baseUrl("https://aqms.doe.ir/Home/LoadAQIMap?id=1")
+                    .baseUrl("https://aqms.doe.ir/Home/")
                     .addConverterFactory(MoshiConverterFactory.create(moshi))
                     .client(okHttpClient)
                     .build()
