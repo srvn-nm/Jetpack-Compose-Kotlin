@@ -23,10 +23,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.weatherApp.R
+import com.example.weatherApp.model.screen.WeatherScreens
 
 @Composable
-fun YourComposeScreen() {
+fun FirstPage(navController: NavHostController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -54,15 +56,15 @@ fun YourComposeScreen() {
         )
 
         Button(
-            onClick = { /* TODO: Handle button click */ },
+            onClick = { navController.navigate(WeatherScreens.Name.passInfo(textValue))},
             modifier = Modifier
                 .padding(16.dp)
                 .fillMaxWidth()
                 .height(61.dp),
             shape = MaterialTheme.shapes.medium,
-            colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White),
+            colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.DarkGray),
         ) {
-            Text(text = "Weather")
+            Text(text = "Weather Condition and Air Pollution.")
         }
     }
 }
