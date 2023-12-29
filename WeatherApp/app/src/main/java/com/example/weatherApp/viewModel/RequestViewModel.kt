@@ -13,7 +13,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-class RequestViewModel: ViewModel() {
+class RequestViewModel : ViewModel() {
 
     private val _weatherInformation = MutableStateFlow<WeatherInfo?>(null)
     val weatherInformation: StateFlow<WeatherInfo?> get() = _weatherInformation
@@ -23,35 +23,34 @@ class RequestViewModel: ViewModel() {
         .build()
 
     private val okHttpClient = OkHttpClient.Builder()
-    .addInterceptor { chain ->
-        val originalRequest = chain.request()
-        val requestBuilder = originalRequest.newBuilder()
-            .method(originalRequest.method,originalRequest.body)
-        chain.proceed(requestBuilder.build())
-    }.build()
+        .addInterceptor { chain ->
+            val originalRequest = chain.request()
+            val requestBuilder = originalRequest.newBuilder()
+                .method(originalRequest.method, originalRequest.body)
+            chain.proceed(requestBuilder.build())
+        }.build()
 
 
-
-    fun cityWeatherApi(cityName:String){
+    fun cityWeatherApi(cityName: String) {
         viewModelScope.launch {
-                try{
-                    val retrofit = Retrofit.Builder()
-                        .baseUrl("https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=501b25848afaeca041fb1ce35525d09b&units=metric")
-                        .addConverterFactory(MoshiConverterFactory.create(moshi))
-                        .client(okHttpClient)
-                        .build()
-                        .create(WeatherApiService::class.java)
+            try {
+                val retrofit = Retrofit.Builder()
+                    .baseUrl("https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=501b25848afaeca041fb1ce35525d09b&units=metric")
+                    .addConverterFactory(MoshiConverterFactory.create(moshi))
+                    .client(okHttpClient)
+                    .build()
+                    .create(WeatherApiService::class.java)
 
-                    _weatherInformation.value = retrofit.weatherPage()
+                _weatherInformation.value = retrofit.weatherPage()
 
-                }catch (exception:Exception){
-                    exception.printStackTrace()
-                    if (exception.message.toString().contains("50")) {
-                        println("server time out")
-                    }else{
-                        println("some things went wrong")
-                    }
+            } catch (exception: Exception) {
+                exception.printStackTrace()
+                if (exception.message.toString().contains("50")) {
+                    println("server time out")
+                } else {
+                    println("some things went wrong")
                 }
+            }
         }
     }
 }
