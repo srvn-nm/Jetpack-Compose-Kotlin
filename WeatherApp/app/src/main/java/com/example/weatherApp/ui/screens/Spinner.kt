@@ -45,21 +45,17 @@ fun DropdownStatesMenuBox(
                 expanded = false
             }) {
             options.forEach {
-                var cities by remember { mutableStateOf(false) }
                 DropdownMenuItem(
                     text = { Text(text = it.name)},
                     onClick = {
                         selectedOption = it
                         expanded = false
-                        cities = true
                     }
                 )
-                if (cities){
-                    DropdownCitiesMenuBox(options = it.cities, navController)
-                }
             }
         }
     }
+    DropdownCitiesMenuBox(options = selectedOption.cities, navController)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
