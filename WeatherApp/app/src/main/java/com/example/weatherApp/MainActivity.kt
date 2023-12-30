@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 Scaffold(
                     topBar = {
-//                        ActionBar(scope = scope, scaffoldState = scaffoldState, title = "Idea Bank")
+//                        ActionBar(scope = scope, scaffoldState = scaffoldState, title = "weather app")
                     },
                     bottomBar = {
 //                        IdeaBankBottomNav(navController = navController)
