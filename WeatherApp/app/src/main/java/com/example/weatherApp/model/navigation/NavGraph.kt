@@ -35,14 +35,13 @@ fun NavGraph(navHostController: NavHostController) {
             val city = cityJson?.let { jsonAdapter.fromJson(it) }
             if (city != null) {
                 WeatherByNameScreen(
-                    navController = navHostController,
                     city = city
                 )
             }
         }
 
         composable(route = WeatherScreens.GPS.route) {
-            WeatherByGPSScreen(navController = navHostController)
+            WeatherByGPSScreen()
         }
     }
 }
