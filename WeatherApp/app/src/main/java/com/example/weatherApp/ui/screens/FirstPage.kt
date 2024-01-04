@@ -8,9 +8,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -24,16 +24,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.beust.klaxon.JsonReader
-import com.beust.klaxon.Klaxon
 import com.example.weatherApp.R
 import com.example.weatherApp.jsonHandler.Iran
-import com.example.weatherApp.jsonHandler.IranStates
 import com.example.weatherApp.jsonHandler.readJSONFromAssets
 import com.example.weatherApp.model.screen.WeatherScreens
-import com.example.weatherApp.network.response.iranCities
 import com.google.gson.Gson
-import java.io.StringReader
 
 @Composable
 fun FirstPage(navController: NavHostController) {
@@ -71,8 +66,8 @@ fun FirstPage(navController: NavHostController) {
                     .padding(16.dp)
                     .fillMaxWidth()
                     .height(61.dp),
-                shape = MaterialTheme.shapes.medium,
-                colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.DarkGray),
+                shape = RoundedCornerShape(10.dp),
+                colors = ButtonDefaults.filledTonalButtonColors(contentColor = Color.White, containerColor = Color.DarkGray),
             ) {
                 Text(text = "Weather Condition and Air Pollution by Choosing")
             }
@@ -89,8 +84,8 @@ fun FirstPage(navController: NavHostController) {
                         .padding(16.dp)
                         .fillMaxWidth()
                         .height(61.dp),
-                    shape = MaterialTheme.shapes.medium,
-                    colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.DarkGray),
+                    shape = RoundedCornerShape(10.dp),
+                    colors = ButtonDefaults.filledTonalButtonColors(contentColor = Color.White, containerColor = Color.DarkGray),
                 ) {
                     Text(text = "Weather Condition and Air Pollution using GPS")
                 }
