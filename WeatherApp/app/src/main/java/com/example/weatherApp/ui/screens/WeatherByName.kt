@@ -32,16 +32,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
 import com.example.weatherApp.R
 import com.example.weatherApp.jsonHandler.IranStates
 import com.example.weatherApp.viewModel.RequestViewModel
-import kotlinx.coroutines.Delay
-import kotlinx.coroutines.delay
 import kotlin.math.sqrt
 
 @Composable
-fun WeatherByNameScreen(navController: NavHostController, city: IranStates.IranCity?) {
+fun WeatherByNameScreen(city: IranStates.IranCity?) {
     val viewModel = viewModel(modelClass = RequestViewModel::class.java)
     if (city != null) {
         viewModel.cityWeatherApi(city.latitude, city.longitude)
