@@ -2,9 +2,7 @@ package com.example.weatherApp.ui.screens
 
 import android.Manifest
 import android.app.Application
-import android.content.Context
 import android.content.pm.PackageManager.PERMISSION_GRANTED
-import android.net.Uri
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -21,11 +19,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -40,30 +37,42 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
 import com.example.weatherApp.R
 import com.example.weatherApp.location.LocationViewModel
 import com.example.weatherApp.viewModel.RequestViewModel
 
 @Composable
-fun WeatherByGPSScreen(navController: NavHostController) {
+fun WeatherByGPSScreen() {
     val context = LocalContext.current
     val viewModel = viewModel {
-        LocationViewModel(Application())
+        LocationViewModel(context.applicationContext as Application)
     }
     val location by viewModel.getLocationLiveData().observeAsState()
 
-    val launcher = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-        if (isGranted){
+    val permissions = arrayOf(
+        Manifest.permission.ACCESS_COARSE_LOCATION,
+        Manifest.permission.ACCESS_FINE_LOCATION
+    )
+
+    val launcher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) { permissionsMap ->
+        val areGranted = permissionsMap.values.reduce { acc, next -> acc && next }
+        if (areGranted){
             viewModel.startLocationUpdates()
         }else{
             Toast.makeText(context, "GPS Unavailable >~<", Toast.LENGTH_LONG).show()
         }
     }
 
-    if(ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PERMISSION_GRANTED){
+    if(permissions.all {
+            ContextCompat.checkSelfPermission(
+                context,
+                it
+            ) == PERMISSION_GRANTED
+        }){
         viewModel.startLocationUpdates()
-
+println(location)
         val viewModel2 = viewModel(modelClass = RequestViewModel::class.java)
         if (location != null) {
             viewModel2.cityWeatherApi(location!!.latitude, location!!.longitude)
@@ -120,7 +129,9 @@ fun WeatherByGPSScreen(navController: NavHostController) {
             }
         }
 
-    }else{
-        launcher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+    }else {
+        SideEffect {
+            launcher.launch(permissions)
+        }
     }
 }
